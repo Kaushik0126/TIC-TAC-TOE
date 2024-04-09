@@ -50,3 +50,28 @@ body {
 .square:active {
     background-color: #acb70daf;
 }
+
+.guide {
+    margin-top: 20px;
+    font-size: xx-large;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.restart {
+    height: 40px;
+    width: 80px;
+    border-radius: 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    color:rgb(255, 255, 255);
+    background-color: rgba(0, 0, 255, 0.795);
+    margin-top: -10px;
+    transition: all 0.3s ease;
+}
+
+.restart:hover {
+    background-color: rgba(0, 0, 255, 0.557);
+}

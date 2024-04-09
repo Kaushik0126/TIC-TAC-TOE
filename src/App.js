@@ -19,17 +19,6 @@ const App = () => {
         }
     }, [board]);
 
-    useEffect(() => {
-        if(result.state == "won") {
-            alert(`Game Finished! Winner: ${result.win}`);
-            restart();
-        } 
-        else if(result.state == "Tie") {
-            alert("Game Tie!");
-            restart();
-        }
-    }, [result]);
-
     const chooseSquare = (square) => {
         f = 0;
 
@@ -62,8 +51,9 @@ const App = () => {
 
     const restart = () => {
         setBoard(["", "", "", "", "", "", "", "",""]);
+        setResult({win: "none", state: "none"});
         setPlayer("O");
-    }
+    };
 
     const checkTie = () => {
         let filled = true;
@@ -75,7 +65,7 @@ const App = () => {
         if(filled && result.state == "none") {
             setResult({win: "No one", state: "Tie"});
         }
-    }
+    };
 
     return (
         <div className="App">
@@ -97,6 +87,10 @@ const App = () => {
                     <Sqaure val={ board[7] } chooseSquare={() => chooseSquare(7)}/>
                     <Sqaure val={ board[8] } chooseSquare={() => chooseSquare(8)}/>
                 </div>
+            </div>
+            <div className="guide">
+                { result.state == "none" ? (<p>Player : {player}</p>) : result.state == "won" ? (<p>Winner : {player == "X" ? "O" : "X"}</p>) : (<p>Game Tie!</p>) }
+                <button className="restart" onClick={()=>restart()}>Restart</button>
             </div>
             </>
         </div>
