@@ -75,3 +75,11 @@ body {
 .restart:hover {
     background-color: rgba(0, 0, 255, 0.557);
 }
+
+@media (max-width : 500px) {
+    .board {
+        width: calc(100% - 20px);
+        max-width: 450px;
+        max-height: 450px;
+    }
+}

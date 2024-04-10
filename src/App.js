@@ -2,12 +2,18 @@ import "./App.css";
 import { useEffect, useState } from "react";
 import Sqaure from "./components/Square";
 import { patterns } from "./patterns";
+import VibrationComponent from "./VibrationComponent";
 let f;
 
 const App = () => {
     const [board, setBoard] =  useState(["", "", "", "", "", "", "", "",""]);
     const [player, setPlayer] = useState("X");
     const [result, setResult] = useState({win: "none", state: "none"});
+
+    let handleVibrate = () => {
+        const vibrationComponent = new VibrationComponent();
+        vibrationComponent.handleVibrate();
+    };
 
     useEffect(() => {
         checkWin();
@@ -45,6 +51,7 @@ const App = () => {
 
             if(found) {
                 setResult({win: player, state: "won"});
+                handleVibrate();
             }
         })
     };
@@ -64,6 +71,7 @@ const App = () => {
 
         if(filled && result.state == "none") {
             setResult({win: "No one", state: "Tie"});
+            handleVibrate();
         }
     };
 
@@ -71,7 +79,7 @@ const App = () => {
         <div className="App">
             <>
             <h1>TIC TAC TOE</h1>
-            <div className="board">
+            <div className="board" style={result.state != "none" ? { pointerEvents: "none" } : {}} >
                 <div className="row">
                     <Sqaure val={ board[0] } chooseSquare={() => chooseSquare(0)}/>
                     <Sqaure val={ board[1] } chooseSquare={() => chooseSquare(1)}/>
